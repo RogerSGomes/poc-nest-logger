@@ -24,19 +24,19 @@ export class CustomLogger extends ConsoleLogger {
       message,
     });
   }
-
-  error(message: string, stack?: string, context?: string) {
-    super.error.apply(this, [message, stack, context]);
+  
+  warn(message: string, context?: string) {
+    super.warn.apply(this, [message, context]);
 
     this.logService.createLog({
-      level: 'error',
+      level: 'warn',
       context,
       message,
     });
   }
 
-  warn(message: string, context?: string) {
-    super.warn.apply(this, [message, context]);
+  error(message: string, stack?: string, context?: string) {
+    super.error.apply(this, [message, stack, context]);
 
     this.logService.createLog({
       level: 'error',
