@@ -18,15 +18,18 @@ export class LogService {
     message: string;
     context: string;
   }): Promise<any> {
-    if (
-      !['RoutesResolver', 'RouterExplorer', 'NestApplication'].includes(
-        createLogDto.context,
-      )
-    )
-      await this.elasticSearchClient.index({
-        index: 'logs',
-        type: 'logs_type',
-        body: { ...createLogDto, registered_at: new Date() },
-      });
+    const nestLogsContexts = [
+      'RoutesResolver',
+      'RouterExplorer',
+      'NestApplication',
+    ];
+
+    // Se for um log com um contexto padrão no NestJS ele retorna sem criar o registro no elasticsearch
+    if (nestLogsContexts.includes(createLogDto.context)) return;
+
+    await this.elasticSearchClient.index({
+      index: 'logs',
+      document: { ...createLogDto, registered_at: new Date() },
+    });
   }
 }

@@ -1,9 +1,9 @@
-import { Client } from 'elasticsearch';
+import { Client } from '@elastic/elasticsearch';
 
 export function getElasticSearchClient() {
   try {
     return new Client({
-      host: 'http://localhost:9200',
+      node: 'http://localhost:9200',
     });
   } catch (e) {
     console.log('Error pegar client do ElasticSearch: ' + e.message);

@@ -1,7 +1,7 @@
 version: "3"
 services:
   elasticsearch01:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.2
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.12
     container_name: elasticsearch01
     ports: 
       - 9200:9200
@@ -12,7 +12,7 @@ services:
       - elastic
   
   kibana01:
-    image: docker.elastic.co/kibana/kibana:7.9.2
+    image: docker.elastic.co/kibana/kibana:7.17.12
     container_name: kibana01
     ports:
       - 5601:5601
